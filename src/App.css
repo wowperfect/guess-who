@@ -1,0 +1,174 @@
+:root {
+  --card-size: 8rem;
+}
+
+#root {
+  width: 100%;
+}
+
+.App {
+  width: 80%;
+  margin: 0 auto;
+  gap: 1rem;
+  display: grid;
+  grid-template:
+    ". seed" min-content
+    "target board" var(--card-size)
+    "packs board" max-content / auto min-content;
+  justify-items: center;
+  align-items: stretch;
+}
+
+.target {
+  grid-area: target;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  --card-size: 12rem;
+}
+
+.packs {
+  grid-area: packs;
+  height: 100%;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  overflow-y: scroll;
+}
+
+.seed {
+  grid-area: seed;
+  margin: 0 auto;
+}
+
+.board {
+  grid-area: board;
+  padding: 1rem;
+  margin: 0;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(auto-fill, 1fr);
+  /* gap: 20px 0; */
+  place-items: center;
+  perspective: 1200px;
+  transition: 1s ease all;
+  position: relative;
+}
+
+.board .reset {
+  position: absolute;
+  top: -1rem;
+  left: -4rem;
+}
+
+.flipper {
+  min-width: var(--card-size);
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  img {
+    max-height: var(--card-size);
+    max-width: var(--card-size);
+    min-height: var(--card-size);
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+}
+
+.flipper.down::before {
+  content: ' ';
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 10;
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+}
+
+@media (prefers-color-scheme: light) {
+  .flipper.down::before {
+    background-color: rgba(255, 255, 255, 0.85);
+  }
+}
+
+.seed {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.img-button {
+  height: 2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.pack-name:hover {
+  text-decoration: underline;
+}
+
+h3 {
+  margin-bottom: .5rem;
+}
+
+.seed input {
+  font-size: 1.5rem;
+  width: fit-content;
+  background: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  text-align: center;
+}
+
+.seed input:hover {
+  border-bottom: 1px solid darkgray;
+}
+
+input[name="collapse"] {
+  display: none;
+}
+
+@media screen and (max-width: 80rem) {
+  .App {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    gap: .5rem;
+    grid-template:
+      "target ." auto
+      "target seed" auto
+      "board board" auto
+      "packs packs" auto / auto auto
+    ;
+  }
+
+  .board .reset {
+    position: absolute;
+    top: -2rem;
+    left: .5rem;
+  }
+  .packs {
+    margin:0;
+  }
+
+  /* ACCORDION */
+
+  .accordion .content {
+    overflow-y: hidden;
+    height: 0;
+    transition: all 0.5s ease;
+  }
+
+  .accordion>input[type="checkbox"]:checked~.content {
+    height: auto;
+    overflow-y: visible;
+    margin-bottom: 1rem;
+  }
+}
