@@ -6,7 +6,7 @@ import { useDebounce, useList, useMedia } from 'react-use';
 import { useForm } from "react-hook-form";
 
 import './App.css';
-// import './candy.css';
+import './candy.css';
 import copy from './assets/copy.png'
 import refresh from './assets/refresh.png'
 import Flipper from './Flipper.jsx';
@@ -214,10 +214,12 @@ function App() {
         </div>
         <div className='seed' id={seed}>
           <div>
-            <h3>this board:</h3>
-            <img src={refresh} className='img-button refresh' onClick={refreshSeed}></img>
-            <input type='text' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
-            <img src={copy} className='img-button copy' onClick={doCopy}></img>
+            {/* <h3>this board:</h3> */}
+            {/* <img src={refresh} className='img-button' onClick={refreshSeed}></img> */}
+            <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+            {/* <img src={copy} className='img-button' onClick={doCopy}></img> */}
+            <button onClick={refreshSeed}>new board</button>
+            <button onClick={doCopy}>share board</button>
           </div>
         </div>
         <div className='board'>

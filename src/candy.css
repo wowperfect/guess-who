@@ -5,22 +5,22 @@
  * https://candy.wavebeem.com
  */
 
-.candy-root {
+:root {
   /* Colors */
-  --candy-color-background1: hsl(80 35% 99%);
-  --candy-color-background2: hsl(80 35% 98%);
-  --candy-color-background3: hsl(80 35% 92%);
-  --candy-color-background4: hsl(80 35% 90%);
-  --candy-color-text1: hsl(80 35% 5%);
-  --candy-color-text2: hsl(80 35% 20%);
-  --candy-color-border1: hsl(80 35% 35%);
-  --candy-color-border2: hsl(80 35% 50%);
-  --candy-color-border3: hsl(80 35% 75%);
-  --candy-color-accent-background1: hsl(260 60% 50%);
-  --candy-color-accent-background2: hsl(260 60% 40%);
-  --candy-color-accent-border1: hsl(260 60% 20%);
-  --candy-color-accent-text1: hsl(260 60% 95%);
-  --candy-color-shadow1: hsl(80 100% 20% / 20%);
+  --candy-color-background1: hsl(0 0% 100%);
+  --candy-color-background2: hsl(0 0% 96%);
+  --candy-color-background3: hsl(0 0% 90%);
+  --candy-color-background4: hsl(0 0% 84%);
+  --candy-color-text1: hsl(0 0% 5%);
+  --candy-color-text2: hsl(0 0% 25%);
+  --candy-color-border1: hsl(0 0% 40%);
+  --candy-color-border2: hsl(0 0% 60%);
+  --candy-color-border3: hsl(0 0% 70%);
+  --candy-color-accent-background1: hsl(0 0% 30%);
+  --candy-color-accent-background2: hsl(0 0% 25%);
+  --candy-color-accent-border1: hsl(0 0% 10%);
+  --candy-color-accent-text1: hsl(0 0% 100%);
+  --candy-color-shadow1: hsl(0 0% 5% / 20%);
 
   --candy-shadow-outset: 0 2px 4px var(--candy-color-shadow1);
   --candy-shadow-inset: inset 0 2px 4px var(--candy-color-shadow1);
@@ -35,7 +35,7 @@
   /* Buttons */
   --candy-button-padding-vertical: 0.5rem;
   --candy-button-padding-horizontal: 1rem;
-  --candy-button-radius: 9999px;
+  --candy-button-radius: 6px;
 
   /* Selects */
   --candy-select-padding-vertical: 0.5rem;
@@ -47,15 +47,6 @@
   --candy-input-padding-vertical: 0.5rem;
   --candy-input-padding-horizontal: 0.5rem;
   --candy-input-radius: 2px;
-
-  /* Tables */
-  --candy-table-padding-vertical: 0.5rem;
-  --candy-table-padding-horizontal: 1rem;
-
-  /* Code */
-  --candy-code-padding-vertical: 1rem;
-  --candy-code-padding-horizontal: 1rem;
-  --candy-code-radius: 6px;
 
   /* Cards */
   --candy-card-padding-vertical: 1rem;
@@ -72,10 +63,6 @@
   --candy-fieldset-padding-vertical: 0.5rem;
   --candy-fieldset-radius: 6px;
 
-  /* Legends */
-  --candy-legend-padding-horizontal: 0.5rem;
-  --candy-legend-padding-vertical: 0rem;
-
   /* Dividers */
   --candy-divider-margin-horizontal: 0rem;
   --candy-divider-margin-vertical: 0.5rem;
@@ -86,7 +73,9 @@
   /* Links */
   --candy-link-radius: 2px;
   --candy-link-underline: 1px;
+}
 
+body {
   background: var(--candy-color-background4);
   color: var(--candy-color-text2);
 }
@@ -241,56 +230,9 @@
     0 0 0 3px var(--candy-color-background1);
 }
 
-/* Table */
-
-.candy-table {
-  box-sizing: border-box;
-  background: var(--candy-color-background1);
-  color: var(--candy-color-text2);
-  border-collapse: collapse;
-}
-
-.candy-table :where(th) {
-  padding: var(--candy-table-padding-vertical)
-    var(--candy-table-padding-horizontal);
-  text-align: left;
-}
-
-.candy-table :where(tbody tr:not(:last-of-type)) {
-  border-bottom: 1px solid var(--candy-color-border3);
-}
-
-.candy-table :where(td) {
-  background: var(--candy-color-background1);
-  color: var(--candy-color-text2);
-  padding: var(--candy-table-padding-vertical)
-    var(--candy-table-padding-horizontal);
-}
-
-.candy-table :where(tfoot, thead) :where(th, td) {
-  background: linear-gradient(
-    to bottom,
-    var(--candy-color-background2),
-    var(--candy-color-background3)
-  );
-  color: var(--candy-color-text2);
-  padding: var(--candy-table-padding-vertical)
-    var(--candy-table-padding-horizontal);
-}
-
-.candy-table :where(thead) {
-  border-top: 0;
-  border-bottom: 1px solid var(--candy-color-border2);
-}
-
-.candy-table :where(tfoot) {
-  border-top: 1px solid var(--candy-color-border2);
-  border-bottom: 0;
-}
-
 /* Button */
 
-.candy-button {
+button {
   --_candy-button-text: var(--candy-color-text1);
   --_candy-button-background1: var(--candy-color-background2);
   --_candy-button-background2: var(--candy-color-background3);
@@ -310,7 +252,7 @@
   border-radius: var(--candy-button-radius);
 }
 
-.candy-button:is(:disabled, [aria-disabled="true"]) {
+button:is(:disabled, [aria-disabled="true"]) {
   background: var(--candy-color-background4);
   transform: none;
   box-shadow: none;
@@ -318,7 +260,7 @@
   border-color: var(--candy-color-border3);
 }
 
-.candy-button:focus-visible {
+button:focus-visible {
   outline: 3px solid var(--candy-color-accent-background1);
   outline-offset: -1px;
   box-shadow:
@@ -326,18 +268,18 @@
     0 0 0 3px var(--candy-color-background1);
 }
 
-.candy-button.candy-primary {
+button.candy-primary {
   font-weight: bold;
 }
 
-.candy-button.candy-primary:where(:not(:disabled, [aria-disabled="true"])) {
+button.candy-primary:where(:not(:disabled, [aria-disabled="true"])) {
   --_candy-button-text: var(--candy-color-accent-text1);
   --_candy-button-background1: var(--candy-color-accent-background1);
   --_candy-button-background2: var(--candy-color-accent-background2);
   --_candy-button-border: var(--candy-color-accent-border1);
 }
 
-.candy-button.candy-primary:focus-visible {
+button.candy-primary:focus-visible {
   outline: 3px solid var(--candy-color-accent-background1);
   outline-offset: -1px;
   box-shadow: inset 0 0 0 2px var(--candy-color-accent-text1);
@@ -348,7 +290,7 @@
 
 /* Select */
 
-.candy-select {
+select {
   --_candy-select-blur: 0.5px;
   --_candy-select-handle-angle: 45deg;
   --_candy-select-handle-size: 6px;
@@ -399,12 +341,12 @@
   border-radius: var(--candy-select-radius);
 }
 
-.candy-select:-moz-focusring {
+select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 var(--candy-color-text2);
 }
 
-.candy-select:is(:disabled, [aria-disabled="true"]) {
+select:is(:disabled, [aria-disabled="true"]) {
   background: var(--_candy-select-arrow);
   --_candy-select-handle-fg: var(--candy-color-border1);
   --_candy-select-handle-bg: var(--candy-color-background4);
@@ -414,7 +356,7 @@
   box-shadow: none;
 }
 
-.candy-select:focus-visible {
+select:focus-visible {
   outline: 3px solid var(--candy-color-accent-background1);
   outline-offset: -1px;
   box-shadow:
@@ -432,7 +374,7 @@
 /* Link */
 
 .candy-prose :where(a),
-.candy-link {
+a {
   color: var(--candy-color-accent-background1);
   border-radius: var(--candy-link-radius);
   text-decoration-thickness: var(--candy-link-underline);
@@ -517,8 +459,8 @@
 
 .candy-checkbox::-moz-focus-inner,
 .candy-radio::-moz-focus-inner,
-.candy-select::-moz-focus-inner,
-.candy-button::-moz-focus-inner,
+select::-moz-focus-inner,
+button::-moz-focus-inner,
 .candy-input::-moz-focus-inner {
   border: 0;
 }
@@ -526,7 +468,7 @@
 /* Miscellaneous */
 
 /* Add a click effect to interactable elements */
-:is(.candy-button, .candy-radio, .candy-checkbox, .candy-select):active:where(
+:is(button, .candy-radio, .candy-checkbox, select):active:where(
     :not(:disabled, [aria-disabled="true"])
   ) {
   filter: brightness(0.9);

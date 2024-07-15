@@ -120,7 +120,7 @@ h3 {
 
 .seed input {
   font-size: 1.5rem;
-  width: fit-content;
+  width: 15rem;
   background: none;
   border: 1px solid gray;
   border-radius: .5rem;
@@ -132,14 +132,14 @@ h3 {
   border-bottom: 1px solid darkgray;
 }
 
-select {
+/* select {
   font-size: 1.5rem;
   background: none;
   border: 1px solid gray;
   border-radius: .5rem;
   text-align: center;
   padding: .2rem;
-}
+} */
 
 @media screen and (max-width: 80rem) {
   .App {
