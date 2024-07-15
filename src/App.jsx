@@ -88,20 +88,22 @@ function App() {
   const [location, navigate] = useLocation()
 
   const [seed, setSeed] = useState(() => match ? params.seed : generatePRNGSeed())
+  console.log('seed on render', seed);
   const [characterPackName, setCharacterPackName] = useState(match ? params.pack : 'ssbu')
   const characterPack = characterPacks[characterPackName].pack
   const numCharacters = 30
 
-  const prng = useRef(() => seedrandom(seed))
-  const rng = prng.current
+  const [{rng}, setRng] = useState(() => ({rng: seedrandom(seed)}))
+  console.log(rng);
+  // const prng = useRef(() => seedrandom(seed))
+  // const rng = prng.current
   const [activeCharacters, setActiveCharacters] = useState(calculateActiveCharacters)
   const [targetChar, setTargetChar] = useState(null)
   const [boardUps, {
     set: setBoardUps,
     updateAt: updateFlipper
   }] = useList(() => arrayOf(numCharacters, true))
-  const { register, watch, setValue } = useForm()
-  const userSeed = watch('seed')
+  const { register, setValue } = useForm()
 
   function calculateActiveCharacters() {
     const xs = Object.entries(characterPack)
@@ -127,10 +129,11 @@ function App() {
   function refreshSeed() {
     const nextSeed = generatePRNGSeed()
     setSeed(nextSeed)
-    prng.current = seedrandom(seed)
-    setTargetChar(null)
-    setValue('seed', nextSeed)
-    navigate(`/${characterPackName}/${nextSeed}`, { replace: true })
+  }
+
+  function onSeedInputChance(e) {
+    console.log('seedinput', e.target.value);
+    setSeed(e.target.value)
   }
 
   useEffect(() => {
@@ -145,16 +148,19 @@ function App() {
 
 
   useEffect(() => {
-    prng.current = seedrandom(seed)
+    console.log('seed on seed change', seed);
+    // prng.current = seedrandom(seed)
+    setRng({rng: seedrandom(seed)})
+    setTargetChar(null)
+    setValue('seed', seed)
+    navigate(`/${characterPackName}/${seed}`, { replace: true })
   }, [seed])
 
   useEffect(() => {
     setActiveCharacters(calculateActiveCharacters())
-  }, [characterPackName, seed])
+  }, [characterPackName, seed, rng])
 
-  useEffect(refreshTargetCharacter, [characterPackName, seed, activeCharacters])
-
-  useEffect(() => setSeed(userSeed), [userSeed])
+  useEffect(refreshTargetCharacter, [characterPackName, seed, activeCharacters, rng])
 
   return (
     <>
@@ -178,9 +184,9 @@ function App() {
         </div>
 
         <div className='packs accordion'>
-          <input type="checkbox" name="collapse" id="characterpackpicker" checked />
+          <input type="checkbox" name="collapse" id="characterpackpicker" checked readOnly />
           <h3>
-            <label for="characterpackpicker">
+            <label htmlFor="characterpackpicker">
               choose your character pack:
             </label>
           </h3>
@@ -200,7 +206,7 @@ function App() {
         <div className='seed' id={seed}>
           <h3>this board:</h3>
           <img src={refresh} className='img-button refresh' onClick={refreshSeed}></img>
-          <input type='text' defaultValue={seed} {...register('seed')} />
+          <input type='text' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
           <img src={copy} className='img-button copy' onClick={doCopy}></img>
         </div>
         <div className='board'>
