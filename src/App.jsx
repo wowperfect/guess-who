@@ -87,9 +87,11 @@ const characterPacks = {
   },
 }
 
-function App() {
+export default function App() {
 
-  const isSmallScreen = useMedia('screen and (max-width: 80rem)')
+  const isLargeScreen = useMedia('screen and min-width: 1300px')
+  const isMediumScreen = useMedia('screen and (max-width: 1299px)')
+  const isSmallScreen = useMedia('screen and (max-width: 849px)')
   const [match, params] = useRoute('/:pack/:seed')
   const [location, navigate] = useLocation()
 
@@ -181,15 +183,19 @@ function App() {
           <Flipper character={targetChar} img={characterPack[targetChar]} isUp={true}></Flipper>
           <div style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
             <button onClick={refreshTargetCharacter}>change target</button>
-            <button className='reset' onClick={resetBoard}>reset board</button>
+            { !isSmallScreen &&
+              <button className='reset' onClick={resetBoard}>reset board</button>
+            }
           </div>
         </div>
 
-        <div className='packs'>
-          <h3>
-            choose your character pack:
-          </h3>
+        <div className={`packs ${isLargeScreen ? 'candy-well' : ''}`}>
           { !isSmallScreen &&
+            <h3 className='candy-prose'>
+              choose character pack:
+            </h3>
+          }
+          { isLargeScreen &&
             Object.entries(characterPacks).map(([key, { name }]) =>
               <div key={key}>
                 <Link
@@ -200,7 +206,7 @@ function App() {
             )
           }
           {
-            isSmallScreen &&
+            isMediumScreen &&
             <select {...register('pack-name', { onChange: onSelectPackNameChange })}>
               {
                 Object.entries(characterPacks).map(([key, { name }]) =>
@@ -213,17 +219,25 @@ function App() {
           }
         </div>
         <div className='seed' id={seed}>
-          <div>
-            {/* <h3>this board:</h3> */}
-            {/* <img src={refresh} className='img-button' onClick={refreshSeed}></img> */}
-            <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
-            {/* <img src={copy} className='img-button' onClick={doCopy}></img> */}
-            <button onClick={refreshSeed}>new board</button>
-            <button onClick={doCopy}>share board</button>
-          </div>
+          { !isSmallScreen &&
+            <div>
+              <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+              <button onClick={refreshSeed}>new board</button>
+              <button onClick={doCopy}>share board</button>
+            </div>
+          }
+          { isSmallScreen &&
+            <>
+              <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+              <div style={{marginTop: '.5rem'}}>
+                <button onClick={refreshSeed}>new</button>
+                <button onClick={doCopy}>share</button>
+                <button className='reset' onClick={resetBoard}>reset</button>
+              </div>
+            </>
+          }
         </div>
-        <div className='board'>
-          {/* <button className='reset' onClick={resetBoard}>reset board</button> */}
+        <div className='board candy-card'>
           {!activeCharacters
             ? Array.from(Array(numCharacters)).map((_, i) => <Flipper key={i} />)
             : Object.entries(activeCharacters).map(([character, img], i) =>
@@ -241,5 +255,3 @@ function App() {
     </>
   );
 }
-
-export default App;
