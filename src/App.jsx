@@ -140,7 +140,7 @@ export default function App() {
   }
 
   function onSelectPackNameChange(e) {
-    console.log(e.target.value);
+    setValue('pack', e.target.value)
   }
 
   useEffect(() => {
@@ -207,7 +207,7 @@ export default function App() {
           }
           {
             !isLargeScreen &&
-            <select {...register('pack-name', { onChange: onSelectPackNameChange })}>
+            <select defaultValue={characterPackName} {...register('pack-name', { onChange: onSelectPackNameChange })}>
               {
                 Object.entries(characterPacks).map(([key, { name }]) =>
                   <option key={key} value={key}>
