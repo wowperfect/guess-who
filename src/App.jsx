@@ -6,6 +6,7 @@ import { useDebounce, useList, useMedia } from 'react-use';
 import { useForm } from "react-hook-form";
 
 import './App.css';
+// import './candy.css';
 import copy from './assets/copy.png'
 import refresh from './assets/refresh.png'
 import Flipper from './Flipper.jsx';
@@ -20,6 +21,7 @@ import * as mc from './assets/mc.js'
 import * as sonic from './assets/sonic.js'
 import * as touhou from './assets/touhou.js'
 import * as undertale from './assets/undertale.js'
+import * as atla from './assets/atla.js'
 
 const generatePRNGSeed = () =>
   generate({ exactly: 3, maxLength: 7, minLength: 5 }).map(toTitleCase).join('')
@@ -79,6 +81,10 @@ const characterPacks = {
     name: 'undertale',
     pack: undertale
   },
+  atla: {
+    name: 'avatar the last airbender',
+    pack: atla
+  },
 }
 
 function App() {
@@ -88,15 +94,11 @@ function App() {
   const [location, navigate] = useLocation()
 
   const [seed, setSeed] = useState(() => match ? params.seed : generatePRNGSeed())
-  console.log('seed on render', seed);
   const [characterPackName, setCharacterPackName] = useState(match ? params.pack : 'ssbu')
   const characterPack = characterPacks[characterPackName].pack
   const numCharacters = 30
 
   const [{rng}, setRng] = useState(() => ({rng: seedrandom(seed)}))
-  console.log(rng);
-  // const prng = useRef(() => seedrandom(seed))
-  // const rng = prng.current
   const [activeCharacters, setActiveCharacters] = useState(calculateActiveCharacters)
   const [targetChar, setTargetChar] = useState(null)
   const [boardUps, {
@@ -132,8 +134,11 @@ function App() {
   }
 
   function onSeedInputChance(e) {
-    console.log('seedinput', e.target.value);
     setSeed(e.target.value)
+  }
+
+  function onSelectPackNameChange(e) {
+    console.log(e.target.value);
   }
 
   useEffect(() => {
@@ -148,8 +153,6 @@ function App() {
 
 
   useEffect(() => {
-    console.log('seed on seed change', seed);
-    // prng.current = seedrandom(seed)
     setRng({rng: seedrandom(seed)})
     setTargetChar(null)
     setValue('seed', seed)
@@ -169,48 +172,56 @@ function App() {
     </Route>
       <div hidden>
         TODO:
-        make seed a text field so ppl can paste opp's seed into it (use Rime's cool select-all css thing)
         custom assets for cards, buttons
         animation for card flip
         jjba
-        grey out characters instead of completely hiding them
       </div>
       <div className='App'>
         <div className='target'>
-          {isSmallScreen && <button onClick={refreshTargetCharacter}>change target</button>}
           <Flipper character={targetChar} img={characterPack[targetChar]} isUp={true}></Flipper>
-          {!isSmallScreen && <button onClick={refreshTargetCharacter}>change target</button>}
-          {/* <button onClick={resetBoard}>reset board</button> */}
-        </div>
-
-        <div className='packs accordion'>
-          <input type="checkbox" name="collapse" id="characterpackpicker" checked readOnly />
-          <h3>
-            <label htmlFor="characterpackpicker">
-              choose your character pack:
-            </label>
-          </h3>
-          <div className='content'>
-            {
-              Object.entries(characterPacks).map(([key, { name }]) =>
-                <div key={key}>
-                  <Link
-                    href={`/${key}/${seed}`}
-                    className={`${key === characterPackName ? 'selected-pack bold' : ''} pack-name`}
-                    >{name}</Link>
-                </div>
-              )
-            }
+          <div style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
+            <button onClick={refreshTargetCharacter}>change target</button>
+            <button className='reset' onClick={resetBoard}>reset board</button>
           </div>
         </div>
+
+        <div className='packs'>
+          <h3>
+            choose your character pack:
+          </h3>
+          { !isSmallScreen &&
+            Object.entries(characterPacks).map(([key, { name }]) =>
+              <div key={key}>
+                <Link
+                  href={`/${key}/${seed}`}
+                  className={`${key === characterPackName ? 'selected-pack bold' : ''} pack-name`}
+                  >{name}</Link>
+              </div>
+            )
+          }
+          {
+            isSmallScreen &&
+            <select {...register('pack-name', { onChange: onSelectPackNameChange })}>
+              {
+                Object.entries(characterPacks).map(([key, { name }]) =>
+                  <option key={key} value={key}>
+                    {name}
+                  </option>
+                )
+              }
+            </select>
+          }
+        </div>
         <div className='seed' id={seed}>
-          <h3>this board:</h3>
-          <img src={refresh} className='img-button refresh' onClick={refreshSeed}></img>
-          <input type='text' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
-          <img src={copy} className='img-button copy' onClick={doCopy}></img>
+          <div>
+            <h3>this board:</h3>
+            <img src={refresh} className='img-button refresh' onClick={refreshSeed}></img>
+            <input type='text' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+            <img src={copy} className='img-button copy' onClick={doCopy}></img>
+          </div>
         </div>
         <div className='board'>
-          <button className='reset' onClick={resetBoard}>reset board</button>
+          {/* <button className='reset' onClick={resetBoard}>reset board</button> */}
           {!activeCharacters
             ? Array.from(Array(numCharacters)).map((_, i) => <Flipper key={i} />)
             : Object.entries(activeCharacters).map(([character, img], i) =>

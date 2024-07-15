@@ -40,6 +40,13 @@
 .seed {
   grid-area: seed;
   margin: 0 auto;
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
 }
 
 .board {
@@ -95,13 +102,6 @@
   }
 }
 
-.seed {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-}
-
 .img-button {
   height: 2rem;
 }
@@ -122,17 +122,23 @@ h3 {
   font-size: 1.5rem;
   width: fit-content;
   background: none;
-  border: none;
-  border-bottom: 1px solid gray;
+  border: 1px solid gray;
+  border-radius: .5rem;
   text-align: center;
+  padding: .2rem;
 }
 
 .seed input:hover {
   border-bottom: 1px solid darkgray;
 }
 
-input[name="collapse"] {
-  display: none;
+select {
+  font-size: 1.5rem;
+  background: none;
+  border: 1px solid gray;
+  border-radius: .5rem;
+  text-align: center;
+  padding: .2rem;
 }
 
 @media screen and (max-width: 80rem) {
@@ -142,10 +148,9 @@ input[name="collapse"] {
     width: 100%;
     gap: .5rem;
     grid-template:
-      "target ." auto
-      "target seed" auto
-      "board board" auto
-      "packs packs" auto / auto auto
+      "target seed" 1fr
+      "target packs" min-content
+      "board board" auto / auto auto
     ;
   }
 
@@ -156,19 +161,14 @@ input[name="collapse"] {
   }
   .packs {
     margin:0;
+    height: min-content;
+    h3 {
+      margin: 0;
+    }
   }
-
-  /* ACCORDION */
-
-  .accordion .content {
-    overflow-y: hidden;
-    height: 0;
-    transition: all 0.5s ease;
-  }
-
-  .accordion>input[type="checkbox"]:checked~.content {
-    height: auto;
-    overflow-y: visible;
-    margin-bottom: 1rem;
+  .seed {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
   }
 }
