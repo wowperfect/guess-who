@@ -92,7 +92,7 @@ export default function App() {
   const isLargeScreen = useMedia('screen and (min-width: 1300px)')
   const isMediumScreen = useMedia('screen and (min-width: 850px) and (max-width: 1299px)')
   const isSmallScreen = useMedia('screen and (max-width: 849px)')
-  const [match, params] = useRoute('/:pack/:seed')
+  const [match, params] = useRoute('/guess-who/:pack/:seed')
   const [location, navigate] = useLocation()
 
   const [seed, setSeed] = useState(() => match ? params.seed : generatePRNGSeed())
@@ -158,7 +158,7 @@ export default function App() {
     setRng({rng: seedrandom(seed)})
     setTargetChar(null)
     setValue('seed', seed)
-    navigate(`/${characterPackName}/${seed}`, { replace: true })
+    navigate(`/guess-who/${characterPackName}/${seed}`, { replace: true })
   }, [seed])
 
   useEffect(() => {
