@@ -206,7 +206,7 @@ export default function App() {
             )
           }
           {
-            isMediumScreen &&
+            !isLargeScreen &&
             <select {...register('pack-name', { onChange: onSelectPackNameChange })}>
               {
                 Object.entries(characterPacks).map(([key, { name }]) =>
