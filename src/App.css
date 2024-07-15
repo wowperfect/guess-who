@@ -171,8 +171,8 @@ h3 {
 
 @media screen and (max-width: 849px) {
   :root {
-      --card-size: 30vw;
-    }
+    --card-size: 30vw;
+  }
   .App {
     margin-top: 1rem;
     margin-bottom: 2rem;
@@ -190,6 +190,28 @@ h3 {
   }
   .board {
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 849px) {
+  :root {
+    --card-size: 23vw;
+  }
+
+  .board {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fill, 1fr);
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 849px) {
+  :root {
+    --card-size: 19vw;
+  }
+
+  .board {
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(auto-fill, 1fr);
   }
 }
