@@ -90,7 +90,7 @@ const characterPacks = {
 export default function App() {
 
   const isLargeScreen = useMedia('screen and (min-width: 1300px)')
-  const isMediumScreen = useMedia('screen and (max-width: 850px) and (max-width: 1299px)')
+  const isMediumScreen = useMedia('screen and (min-width: 850px) and (max-width: 1299px)')
   const isSmallScreen = useMedia('screen and (max-width: 849px)')
   const [match, params] = useRoute('/:pack/:seed')
   const [location, navigate] = useLocation()
