@@ -34,7 +34,7 @@
   height: 100%;
   font-size: 1.2rem;
   margin-top: 2rem;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .seed {
