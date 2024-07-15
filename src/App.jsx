@@ -199,7 +199,7 @@ export default function App() {
             Object.entries(characterPacks).map(([key, { name }]) =>
               <div key={key}>
                 <Link
-                  href={`/${key}/${seed}`}
+                  href={`/guess-who/${key}/${seed}`}
                   className={`${key === characterPackName ? 'selected-pack bold' : ''} pack-name`}
                   >{name}</Link>
               </div>
