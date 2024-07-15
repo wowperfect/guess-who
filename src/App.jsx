@@ -140,7 +140,7 @@ export default function App() {
   }
 
   function onSelectPackNameChange(e) {
-    setValue('pack', e.target.value)
+    setCharacterPackName(e.target.value)
   }
 
   useEffect(() => {
@@ -160,6 +160,12 @@ export default function App() {
     setValue('seed', seed)
     navigate(`/guess-who/${characterPackName}/${seed}`, { replace: true })
   }, [seed])
+
+  useEffect(() => {
+    setTargetChar(null)
+    setValue('pack-name', characterPackName)
+    navigate(`/guess-who/${characterPackName}/${seed}`, { replace: true })
+  }, [characterPackName])
 
   useEffect(() => {
     setActiveCharacters(calculateActiveCharacters())
