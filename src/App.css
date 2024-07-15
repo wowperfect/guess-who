@@ -156,6 +156,7 @@ h3 {
   .packs {
     margin:0;
     height: min-content;
+    overflow-y: unset;
     h3 {
       margin: 0;
       display: inline-block;
