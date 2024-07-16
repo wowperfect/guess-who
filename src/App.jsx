@@ -136,7 +136,7 @@ export default function App() {
           </div>
         </div>
 
-        <div className={`packs ${isLargeScreen ? 'candy-well' : ''}`}>
+        <div className={`packs ${isLargeScreen ? 'candy-well' : 'toolbar'}`}>
           { !isSmallScreen &&
             <h3 className='candy-prose'>
               choose character pack:
@@ -167,21 +167,25 @@ export default function App() {
         </div>
         <div className='seed' id={seed}>
           { !isSmallScreen &&
-            <div>
-              <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+            <div className='toolbar'>
+              <input type='text'
+                className='candy-input'
+                defaultValue={seed}
+                {...register('seed', { onChange: onSeedInputChance })}
+              />
               <button onClick={refreshSeed}>new board</button>
               <button onClick={doCopy}>share board</button>
             </div>
           }
           { isSmallScreen &&
-            <>
+            <div className='toolbar'>
               <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
-              <div style={{marginTop: '.5rem'}}>
+              <div className='toolbar'>
                 <button onClick={refreshSeed}>new</button>
                 <button onClick={doCopy}>share</button>
                 <button className='reset' onClick={resetBoard}>reset</button>
               </div>
-            </>
+            </div>
           }
         </div>
         <div className='board candy-card'>
