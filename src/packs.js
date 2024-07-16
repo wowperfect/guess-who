@@ -11,6 +11,7 @@ import * as undertale from './assets/undertale.js'
 import * as atla from './assets/atla.js'
 import * as su from './assets/su.js'
 import * as helluva from './assets/helluva.js'
+import * as mario from './assets/mario.js'
 
 export default {
   ssbu: {
@@ -64,5 +65,9 @@ export default {
   helluva: {
     name: 'hazbin hotel/helluva boss',
     pack: helluva
+  },
+  mario: {
+    name: 'super mario',
+    pack: mario
   },
 }
