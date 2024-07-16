@@ -4,11 +4,11 @@ import seedrandom from 'seedrandom';
 import { useRoute, Route, Redirect, Link, useLocation } from "wouter";
 import { useDebounce, useList, useMedia } from 'react-use';
 import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './App.css';
 import './candy.css';
-import copy from './assets/copy.png'
-import refresh from './assets/refresh.png'
 import Flipper from './Flipper.jsx';
 import characterPacks from './packs.js'
 
@@ -64,7 +64,15 @@ export default function App() {
   }
 
   function doCopy() {
-    navigator.clipboard.writeText(seed)
+    navigator.clipboard.writeText(location)
+    // toast(`copied to clipboard:\n ${window.location}`, {
+    toast(`copied url to clipboard`, {
+      position: 'bottom-center',
+      closeOnClick: true,
+      pauseOnHover: true,
+      autoClose: 3000,
+      hideProgressBar: true,
+    });
   }
 
   function resetBoard() {
@@ -116,9 +124,9 @@ export default function App() {
 
   return (
     <>
-    <Route path="/">
-      <Redirect to={`/${characterPackName}/${seed}`}/>
-    </Route>
+      <Route path="/guess-who/">
+        <Redirect to={`/guess-who/${characterPackName}/${seed}`}/>
+      </Route>
       <div hidden>
         TODO:
         custom assets for cards, buttons
@@ -202,6 +210,7 @@ export default function App() {
             )
           }
         </div>
+        <ToastContainer />
       </div>
     </>
   );
