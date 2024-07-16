@@ -11,6 +11,7 @@ import './App.css';
 import './candy.css';
 import Flipper from './Flipper.jsx';
 import characterPacks from './packs.js'
+import Tutorial from './Tutorial.jsx';
 
 const generatePRNGSeed = () =>
   generate({ exactly: 3, maxLength: 7, minLength: 5 }).map(toTitleCase).join('')
@@ -133,7 +134,13 @@ export default function App() {
         animation for card flip
         jjba
       </div>
-      <div className='App'>
+      <header>
+        <nav>
+          logo here
+          <Tutorial />
+        </nav>
+      </header>
+      <main className='App'>
         <div className='target'>
           <Flipper character={targetChar} img={characterPack[targetChar]} isUp={true}></Flipper>
           <div style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
@@ -211,7 +218,10 @@ export default function App() {
           }
         </div>
         <ToastContainer />
-      </div>
+      </main>
+      <footer>
+
+      </footer>
     </>
   );
 }

@@ -46,7 +46,7 @@
   --candy-field-gap: 0.25rem;
   --candy-input-padding-vertical: 0.5rem;
   --candy-input-padding-horizontal: 0.5rem;
-  --candy-input-radius: 2px;
+  --candy-input-radius: .5rem;
 
   /* Cards */
   --candy-card-padding-vertical: 1rem;
