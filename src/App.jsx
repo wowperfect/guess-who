@@ -30,10 +30,9 @@ function chooseN(rng, xs, n) {
 }
 
 export default function App() {
-
-  const isLargeScreen = useMedia('screen and (min-width: 1300px)')
-  const isMediumScreen = useMedia('screen and (min-width: 850px) and (max-width: 1299px)')
-  const isSmallScreen = useMedia('screen and (max-width: 849px)')
+  const isLargeScreen = useMedia('screen and (min-width: 1100px)')
+  const isMediumScreen = useMedia('screen and (min-width: 800px) and (max-width: 1099px)')
+  const isSmallScreen = useMedia('screen and (max-width: 799px)')
   const [match, params] = useRoute('/guess-who/:pack/:seed')
   const [location, navigate] = useLocation()
 

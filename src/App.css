@@ -7,8 +7,9 @@
 }
 
 .App {
-  width: 80%;
+  width: max-content;
   margin: 0 auto;
+  padding-top: 1rem;
   gap: 1rem;
   display: grid;
   grid-template:
@@ -54,16 +55,10 @@
 
 .board {
   grid-area: board;
-  padding: 1rem;
-  margin: 0;
-  /* border: 1px solid black; */
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: repeat(auto-fill, 1fr);
-  /* gap: 20px 0; */
   place-items: center;
-  perspective: 1200px;
-  transition: 1s ease all;
   position: relative;
 }
 
@@ -99,16 +94,6 @@
   right: 0;
 }
 
-@media (prefers-color-scheme: light) {
-  .flipper.down::before {
-    background-color: rgba(255, 255, 255, 0.85);
-  }
-}
-
-.img-button {
-  height: 2rem;
-}
-
 .bold {
   font-weight: bold;
 }
@@ -122,7 +107,7 @@ h3 {
 }
 
 .seed input {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 15rem;
   background: none;
   border: 1px solid gray;
@@ -135,7 +120,7 @@ h3 {
   border-bottom: 1px solid darkgray;
 }
 
-@media screen and (max-width: 1299px) {
+@media screen and (max-width: 1099px) {
   .App {
     margin-top: 1rem;
     margin-bottom: 2rem;
