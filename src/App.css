@@ -9,7 +9,7 @@
 .App {
   width: max-content;
   margin: 0 auto;
-  padding-top: 1rem;
+  padding-top: 2rem;
   gap: 1rem;
   display: grid;
   grid-template:
@@ -122,8 +122,8 @@ h3 {
 
 @media screen and (max-width: 1099px) {
   .App {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     width: 100%;
     gap: .5rem;
     grid-template:
@@ -160,8 +160,8 @@ h3 {
     --card-size: 30vw;
   }
   .App {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
     width: 100%;
     gap: .5rem;
     grid-template:
