@@ -112,6 +112,7 @@ export default function App() {
   }, [seed])
 
   useEffect(() => {
+    setRng({ rng: seedrandom(seed) })
     setTargetChar(null)
     setValue('pack-name', characterPackName)
     navigate(`/guess-who/${characterPackName}/${seed}`, { replace: true })
