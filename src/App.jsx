@@ -66,7 +66,7 @@ export default function App() {
   }
 
   function doCopy() {
-    navigator.clipboard.writeText(window.location)
+    navigator.clipboard.writeText(window.location.href)
     // toast(`copied to clipboard:\n ${window.location}`, {
     toast(`copied url to clipboard`, {
       position: 'bottom-center',
