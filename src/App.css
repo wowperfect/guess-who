@@ -36,6 +36,7 @@ nav {
 footer {
   .candy-well {
     width: max-content;
+    max-width: 100%;
     margin: 2rem auto;
   }
 
@@ -51,6 +52,10 @@ footer {
       text-decoration: underline;
     }
   }
+}
+
+select {
+  max-width: 100%;
 }
 
 .App {
