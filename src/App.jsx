@@ -232,7 +232,9 @@ export default function App() {
             <a href='https://github.com/wowperfect/guess-who'>source code here</a>
           </p>
           <p>
-            send character pack requests to <pre style={{display: 'inline-block'}}>guess.who@wowperfect.net</pre>
+            send character pack requests to
+            <br/>
+            <pre>guess.who@wowperfect.net</pre>
           </p>
         </div>
       </footer>

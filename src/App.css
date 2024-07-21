@@ -43,7 +43,6 @@ footer {
   p {
     margin: 0 auto;
     line-height: 2;
-    /* color: var(--candy-color-background1); */
     text-align: center;
     width: max-content;
 
@@ -51,6 +50,10 @@ footer {
       color: var(--candy-color-background1);
       text-decoration: underline;
     }
+  }
+
+  pre {
+    margin: 0;
   }
 }
 
@@ -173,8 +176,8 @@ dialog {
 
   .close {
     position: absolute;
-    top: 1rem;
-    right: 1rem;
+    top: .5rem;
+    right: .5rem;
   }
 }
 
