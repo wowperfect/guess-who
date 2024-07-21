@@ -12,6 +12,7 @@ import './candy.css';
 import Flipper from './Flipper.jsx';
 import characterPacks from './packs.js'
 import Tutorial from './Tutorial.jsx';
+import logo from './assets/logo.png'
 
 const generatePRNGSeed = () =>
   generate({ exactly: 3, maxLength: 7, minLength: 5 }).map(toTitleCase).join('')
@@ -31,9 +32,9 @@ function chooseN(rng, xs, n) {
 }
 
 export default function App() {
-  const isLargeScreen = useMedia('screen and (min-width: 1100px)')
-  const isMediumScreen = useMedia('screen and (min-width: 800px) and (max-width: 1099px)')
-  const isSmallScreen = useMedia('screen and (max-width: 799px)')
+  const isLargeScreen = useMedia('screen and (min-width: 1099px)')
+  const isMediumScreen = useMedia('screen and (min-width: 500px) and (max-width: 1099px)')
+  const isSmallScreen = useMedia('screen and (max-width: 499px)')
   const [match, params] = useRoute('/guess-who/:pack/:seed')
   const [location, navigate] = useLocation()
 
@@ -137,14 +138,14 @@ export default function App() {
       </div>
       <header>
         <nav>
-          logo here
+          <div className='logo'><img src={logo}/></div>
           <Tutorial />
         </nav>
       </header>
       <main className='App'>
         <div className='target'>
           <Flipper character={targetChar} img={characterPack[targetChar]} isUp={true}></Flipper>
-          <div style={{display: 'flex', flexDirection: 'row', gap: '1rem'}}>
+          <div className='toolbar' style={{alignContent: 'stretch'}}>
             <button onClick={refreshTargetCharacter}>change target</button>
             { !isSmallScreen &&
               <button className='reset' onClick={resetBoard}>reset board</button>
@@ -153,7 +154,7 @@ export default function App() {
         </div>
 
         <div className={`packs ${isLargeScreen ? 'candy-well' : 'toolbar'}`}>
-          { !isSmallScreen &&
+          { isLargeScreen &&
             <h3 className='candy-prose'>
               choose character pack:
             </h3>
@@ -181,27 +182,29 @@ export default function App() {
             </select>
           }
         </div>
-        <div className='seed' id={seed}>
+        <div className='seed toolbar' id={seed}>
           { !isSmallScreen &&
-            <div className='toolbar'>
+            <>
               <input type='text'
                 className='candy-input'
                 defaultValue={seed}
                 {...register('seed', { onChange: onSeedInputChance })}
               />
-              <button onClick={refreshSeed}>new board</button>
-              <button onClick={doCopy}>share board</button>
-            </div>
+              <div className='toolbar'>
+                <button onClick={refreshSeed}>new board</button>
+                <button onClick={doCopy}>share board</button>
+              </div>
+            </>
           }
           { isSmallScreen &&
-            <div className='toolbar'>
+            <>
               <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
               <div className='toolbar'>
                 <button onClick={refreshSeed}>new</button>
                 <button onClick={doCopy}>share</button>
                 <button className='reset' onClick={resetBoard}>reset</button>
               </div>
-            </div>
+            </>
           }
         </div>
         <div className='board candy-card'>
@@ -221,7 +224,17 @@ export default function App() {
         <ToastContainer />
       </main>
       <footer>
-
+        <div className='candy-well'>
+          <p className='candy-prose'>
+            made by <a href='https://wowperfect.net'>wowperfect</a>, with help from <a href='https://wavebeem.com'>wavebeem</a>
+          </p>
+          <p className='candy-prose'>
+            <a href='https://github.com/wowperfect/guess-who'>source code here</a>
+          </p>
+          <p>
+            send character pack requests to <pre style={{display: 'inline-block'}}>guess.who@wowperfect.net</pre>
+          </p>
+        </div>
       </footer>
     </>
   );

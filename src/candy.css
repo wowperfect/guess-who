@@ -7,20 +7,20 @@
 
 :root {
   /* Colors */
-  --candy-color-background1: hsl(0 0% 100%);
-  --candy-color-background2: hsl(0 0% 96%);
-  --candy-color-background3: hsl(0 0% 90%);
-  --candy-color-background4: hsl(0 0% 84%);
+  --candy-color-accent-background1: hsl(356 90% 40%);
+  --candy-color-accent-background2: hsl(356 90% 35%);
+  --candy-color-accent-border1: hsl(356 90% 10%);
+  --candy-color-accent-text1: hsl(225 69% 100%);
+  --candy-color-background1: hsl(225 69% 98%);
+  --candy-color-background2: hsl(225 69% 95%);
+  --candy-color-background3: hsl(225 69% 90%);
+  --candy-color-background4: hsl(225 69% 15%);
+  --candy-color-border1: hsl(0 0% 20%);
+  --candy-color-border2: hsl(0 0% 30%);
+  --candy-color-border3: hsl(0 0% 40%);
+  --candy-color-shadow1: hsl(225 69% 5% / 20%);
   --candy-color-text1: hsl(0 0% 5%);
   --candy-color-text2: hsl(0 0% 25%);
-  --candy-color-border1: hsl(0 0% 40%);
-  --candy-color-border2: hsl(0 0% 60%);
-  --candy-color-border3: hsl(0 0% 70%);
-  --candy-color-accent-background1: hsl(0 0% 30%);
-  --candy-color-accent-background2: hsl(0 0% 25%);
-  --candy-color-accent-border1: hsl(0 0% 10%);
-  --candy-color-accent-text1: hsl(0 0% 100%);
-  --candy-color-shadow1: hsl(0 0% 5% / 20%);
 
   --candy-shadow-outset: 0 2px 4px var(--candy-color-shadow1);
   --candy-shadow-inset: inset 0 2px 4px var(--candy-color-shadow1);
@@ -250,6 +250,7 @@ button {
   font: inherit;
   border: 1px solid var(--_candy-button-border);
   border-radius: var(--candy-button-radius);
+  flex: auto;
 }
 
 button:is(:disabled, [aria-disabled="true"]) {
@@ -375,7 +376,7 @@ select:focus-visible {
 
 .candy-prose :where(a),
 a {
-  color: var(--candy-color-accent-background1);
+  color: var(--candy-color-text1);
   border-radius: var(--candy-link-radius);
   text-decoration-thickness: var(--candy-link-underline);
 }
@@ -383,7 +384,7 @@ a {
 .candy-prose :where(a):focus-visible,
 .candy-link:focus-visible {
   text-decoration-line: none;
-  outline: 2px solid var(--candy-color-accent-background1);
+  outline: 2px solid var(--candy-color-text1);
   outline-offset: 1px;
   box-shadow:
     0 0 0 1px var(--candy-color-background1),
@@ -400,7 +401,7 @@ a {
 
 .candy-input {
   box-sizing: border-box;
-  background: var(--candy-color-background1);
+  background: var(--candy-color-background2);
   color: var(--candy-color-text1);
   font: inherit;
   padding: var(--candy-input-padding-vertical)

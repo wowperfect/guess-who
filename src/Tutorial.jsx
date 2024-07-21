@@ -3,7 +3,7 @@ import React, {useRef} from "react";
 export default function Tutorial () {
   const dialogRef = useRef(null)
 
-  return <>
+  return <div className="help">
     <button
       onClick={() => dialogRef.current?.showModal()}
       style={{
@@ -42,6 +42,6 @@ export default function Tutorial () {
         </form>
       </div>
     </dialog>
-  </>
+  </div>
 
 }

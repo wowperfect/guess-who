@@ -2,21 +2,68 @@
   --card-size: 8rem;
 }
 
-#root {
-  width: 100%;
+body {
+  padding-bottom: 2rem;
+}
+
+nav {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  align-content: center;
+  padding: .25rem 5rem;
+  background: linear-gradient(to bottom,
+    var(--candy-color-accent-background1) 0 50%,
+    var(--candy-color-accent-background2) 50%);
+  border-bottom: var(--candy-color-accent-border1) 1px solid;
+
+  img {
+    height: 4rem;
+  }
+
+  button {
+    align-self: center;
+  }
+
+  .logo, .help {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+  }
+}
+
+footer {
+  .candy-well {
+    width: max-content;
+    margin: 2rem auto;
+  }
+
+  p {
+    margin: 0 auto;
+    line-height: 2;
+    /* color: var(--candy-color-background1); */
+    text-align: center;
+    width: max-content;
+
+    a {
+      color: var(--candy-color-background1);
+      text-decoration: underline;
+    }
+  }
 }
 
 .App {
   width: max-content;
   margin: 0 auto;
-  padding-top: 2rem;
+  padding-top: 1rem;
   gap: 1rem;
   display: grid;
   grid-template:
     ". seed" min-content
     "target board" min-content
     "packs board" max-content / auto min-content;
-  justify-items: center;
+  justify-items: stretch;
   align-items: stretch;
 }
 
@@ -24,8 +71,7 @@
   grid-area: target;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding-left: 1rem;
   gap: 1rem;
   --card-size: 12rem;
 }
@@ -39,6 +85,10 @@
   h3 {
     margin-top: 0;
   }
+
+  a {
+    text-decoration: underline;
+  }
 }
 
 .toolbar {
@@ -46,12 +96,14 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-end;
+  align-content: flex-end;
   gap: 1rem;
 }
 
 .seed {
   grid-area: seed;
-  margin: 0 auto;
+  padding-right: 1rem;
+  /* margin: 0 auto; */
 }
 
 .board {
@@ -61,12 +113,6 @@
   grid-template-rows: repeat(auto-fill, 1fr);
   place-items: center;
   position: relative;
-}
-
-.board .reset {
-  position: absolute;
-  top: -1rem;
-  left: -4rem;
 }
 
 .flipper {
@@ -108,6 +154,7 @@ h3 {
 }
 
 .seed input {
+  --candy-input-padding-vertical: .3rem;
   font-size: 1.2rem;
   width: 15rem;
   text-align: center;
@@ -128,9 +175,8 @@ dialog {
 
 @media screen and (min-width: 500px) and (max-width: 1099px) {
   .App {
-    padding-top: 2rem;
     padding-bottom: 2rem;
-    width: 100%;
+    max-width: 100%;
     gap: .5rem;
     grid-template:
       "target seed" 1fr
@@ -152,8 +198,7 @@ dialog {
     margin:0;
     height: min-content;
     overflow-y: unset;
-    margin-right: 1rem;
-    width: 100%;
+    padding-right: 1rem;
 
     h3 {
       margin: 0;
@@ -161,11 +206,12 @@ dialog {
       margin-right: 1rem;
     }
   }
+
   .seed {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: end;
-    padding-right: 1rem;
+    padding-right: 1rem; */
   }
 }
 
@@ -174,14 +220,13 @@ dialog {
     --card-size: 30vw;
   }
   .App {
-    padding-top: 2rem;
     padding-bottom: 2rem;
     width: 100%;
     gap: .5rem;
     grid-template:
       "target" 1fr
-      "seed" min-content
-      "packs" min-content
+      "seed" max-content
+      "packs" max-content
       "board" auto / auto
     ;
   }
@@ -197,6 +242,14 @@ dialog {
   }
   .seed .toolbar {
     justify-content: center;
+  }
+
+  .target, .seed, .packs {
+    padding: 0 2rem;
+
+    > * {
+      flex: auto;
+    }
   }
 }
 

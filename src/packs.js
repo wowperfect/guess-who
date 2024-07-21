@@ -35,7 +35,7 @@ export default {
     pack: dunmesh
   },
   iasip: {
-    name: 'always sunny in PA',
+    name: 'always sunny in philadelphia',
     pack: iasip
   },
   mc: {
