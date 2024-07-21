@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { generate } from "random-words";
 import seedrandom from 'seedrandom';
 import { useRoute, Route, Redirect, Link, useLocation } from "wouter";
-import { useDebounce, useList, useMedia } from 'react-use';
+import { useList, useMedia } from 'react-use';
 import { useForm } from "react-hook-form";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -66,7 +66,7 @@ export default function App() {
   }
 
   function doCopy() {
-    navigator.clipboard.writeText(location)
+    navigator.clipboard.writeText(window.location)
     // toast(`copied to clipboard:\n ${window.location}`, {
     toast(`copied url to clipboard`, {
       position: 'bottom-center',
