@@ -12,6 +12,10 @@ import * as atla from './assets/atla.js'
 import * as su from './assets/su.js'
 import * as helluva from './assets/helluva.js'
 import * as mario from './assets/mario.js'
+import * as ace from './assets/ace.js'
+import * as poke from './assets/poke.js'
+import * as invincible from './assets/invincible.js'
+import * as guiltygear from './assets/guiltygear.js'
 
 export default {
   ssbu: {
@@ -69,5 +73,21 @@ export default {
   mario: {
     name: 'super mario',
     pack: mario
+  },
+  ace: {
+    name: 'ace attorney',
+    pack: ace
+  },
+  pokemon: {
+    name: 'pokémon',
+    pack: poke
+  },
+  invincible: {
+    name: 'invincible',
+    pack: invincible
+  },
+  guiltygear: {
+    name: 'guilty gear',
+    pack: guiltygear
   },
 }
