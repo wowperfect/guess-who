@@ -32,8 +32,6 @@ function chooseN(rng, xs, n) {
 }
 
 export default function App() {
-  const isLargeScreen = useMedia('screen and (min-width: 1099px)')
-  const isMediumScreen = useMedia('screen and (min-width: 500px) and (max-width: 1099px)')
   const isSmallScreen = useMedia('screen and (max-width: 499px)')
   const [match, params] = useRoute('/guess-who/:pack/:seed')
   const [location, navigate] = useLocation()
@@ -67,7 +65,6 @@ export default function App() {
 
   function doCopy() {
     navigator.clipboard.writeText(window.location.href)
-    // toast(`copied to clipboard:\n ${window.location}`, {
     toast(`copied url to clipboard`, {
       position: 'bottom-center',
       closeOnClick: true,
@@ -147,42 +144,21 @@ export default function App() {
           <Flipper character={targetChar} img={characterPack[targetChar]} isUp={true}></Flipper>
           <div className='toolbar' style={{alignContent: 'stretch'}}>
             <button onClick={refreshTargetCharacter}>change target</button>
-            { !isSmallScreen &&
-              <button className='reset' onClick={resetBoard}>reset board</button>
-            }
           </div>
         </div>
 
-        <div className={`packs ${isLargeScreen ? 'candy-well' : 'toolbar'}`}>
-          { isLargeScreen &&
-            <h3 className='candy-prose'>
-              choose character pack:
-            </h3>
-          }
-          { isLargeScreen &&
-            Object.entries(characterPacks).map(([key, { name }]) =>
-              <div key={key}>
-                <Link
-                  href={`/guess-who/${key}/${seed}`}
-                  className={`${key === characterPackName ? 'selected-pack bold' : ''} pack-name`}
-                  >{name}</Link>
-              </div>
-            )
-          }
-          {
-            !isLargeScreen &&
-            <select defaultValue={characterPackName} {...register('pack-name', { onChange: onSelectPackNameChange })}>
-              {
-                Object.entries(characterPacks).map(([key, { name }]) =>
-                  <option key={key} value={key}>
-                    {name}
-                  </option>
-                )
-              }
-            </select>
-          }
+        <div className='packs toolbar'>
+          <select defaultValue={characterPackName} {...register('pack-name', { onChange: onSelectPackNameChange })}>
+            {
+              Object.entries(characterPacks).map(([key, { name }]) =>
+                <option key={key} value={key}>
+                  {name}
+                </option>
+              )
+            }
+          </select>
         </div>
-        <div className='seed toolbar' id={seed}>
+        <div className='seed' id={seed}>
           { !isSmallScreen &&
             <>
               <input type='text'
@@ -193,16 +169,21 @@ export default function App() {
               <div className='toolbar'>
                 <button onClick={refreshSeed}>new board</button>
                 <button onClick={doCopy}>share board</button>
+                <button onClick={resetBoard}>reset board</button>
               </div>
             </>
           }
           { isSmallScreen &&
             <>
-              <input type='text' className='candy-input' defaultValue={seed} {...register('seed', { onChange: onSeedInputChance })} />
+              <input type='text'
+                className='candy-input'
+                defaultValue={seed}
+                {...register('seed', { onChange: onSeedInputChance })}
+              />
               <div className='toolbar'>
                 <button onClick={refreshSeed}>new</button>
                 <button onClick={doCopy}>share</button>
-                <button className='reset' onClick={resetBoard}>reset</button>
+                <button onClick={resetBoard}>reset</button>
               </div>
             </>
           }
