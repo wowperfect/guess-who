@@ -113,6 +113,11 @@ select {
   grid-template-rows: repeat(auto-fill, 1fr);
   place-items: center;
   position: relative;
+  gap: 1px;
+  .flipper {
+    border-radius: 0px;
+    background: var(--candy-color-background2);
+  }
 }
 
 .flipper {
@@ -121,7 +126,7 @@ select {
   justify-content: center;
   position: relative;
 
-  transition: 500ms ease transform, 400ms opacity;
+  transition: 250ms ease transform, 200ms opacity;
 
   img {
     max-height: var(--card-size);
