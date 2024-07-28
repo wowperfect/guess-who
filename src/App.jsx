@@ -37,8 +37,8 @@ export default function App() {
   console.log(match, params);
   const [location, navigate] = useLocation()
 
-  const [seed, setSeed] = useState(() => params.seed ?? generatePRNGSeed())
-  const [characterPackName, setCharacterPackName] = useState(params.pack ?? 'ssbu')
+  const [seed, setSeed] = useState(() => params?.seed ?? generatePRNGSeed())
+  const [characterPackName, setCharacterPackName] = useState(params?.pack ?? 'ssbu')
   const characterPack = characterPacks[characterPackName].pack
   const numCharacters = 30
 
