@@ -33,11 +33,12 @@ function chooseN(rng, xs, n) {
 
 export default function App() {
   const isSmallScreen = useMedia('screen and (max-width: 499px)')
-  const [match, params] = useRoute('/guess-who/:pack/:seed')
+  const [match, params] = useRoute('/guess-who/:pack/:seed?')
+  console.log(match, params);
   const [location, navigate] = useLocation()
 
-  const [seed, setSeed] = useState(() => match ? params.seed : generatePRNGSeed())
-  const [characterPackName, setCharacterPackName] = useState(match ? params.pack : 'ssbu')
+  const [seed, setSeed] = useState(() => params.seed ?? generatePRNGSeed())
+  const [characterPackName, setCharacterPackName] = useState(params.pack ?? 'ssbu')
   const characterPack = characterPacks[characterPackName].pack
   const numCharacters = 30
 
