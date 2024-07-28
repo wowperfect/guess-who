@@ -17,11 +17,16 @@ import * as poke from './assets/poke.js'
 import * as invincible from './assets/invincible.js'
 import * as guiltygear from './assets/guiltygear.js'
 import * as acnh from './assets/acnh.js'
+import * as indieplat from './assets/indieplat.js'
 
 export default {
   ssbu: {
     name: 'smash bros ultimate',
     pack: ssbu
+  },
+  indieplat: {
+    name: 'indie platformers',
+    pack: indieplat
   },
   jjk: {
     name: 'jujustu kaisen',
