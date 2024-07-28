@@ -16,6 +16,7 @@ import * as ace from './assets/ace.js'
 import * as poke from './assets/poke.js'
 import * as invincible from './assets/invincible.js'
 import * as guiltygear from './assets/guiltygear.js'
+import * as acnh from './assets/acnh.js'
 
 export default {
   ssbu: {
@@ -89,5 +90,9 @@ export default {
   guiltygear: {
     name: 'guilty gear',
     pack: guiltygear
+  },
+  acnh: {
+    name: 'animal crossing: new horizons',
+    pack: acnh
   },
 }
