@@ -38,10 +38,6 @@ export default {
     name: 'my little pony',
     pack: mlp
   },
-  kpop: {
-    name: 'kpop',
-    pack: kpop
-  },
   fnaf: {
     name: 'five nights at freddy\'s',
     pack: fnaf
@@ -105,5 +101,9 @@ export default {
   acnh: {
     name: 'animal crossing: new horizons',
     pack: acnh
+  },
+  kpop: {
+    name: 'kpop',
+    pack: kpop
   },
 }
