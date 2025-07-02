@@ -18,6 +18,8 @@ import * as invincible from './assets/invincible.js'
 import * as guiltygear from './assets/guiltygear.js'
 import * as acnh from './assets/acnh.js'
 import * as indieplat from './assets/indieplat.js'
+import * as kpop from './assets/kpop.js'
+
 
 export default {
   ssbu: {
@@ -35,6 +37,10 @@ export default {
   mlp: {
     name: 'my little pony',
     pack: mlp
+  },
+  kpop: {
+    name: 'kpop',
+    pack: kpop
   },
   fnaf: {
     name: 'five nights at freddy\'s',
