@@ -18,6 +18,8 @@ import * as invincible from './assets/invincible.js'
 import * as guiltygear from './assets/guiltygear.js'
 import * as acnh from './assets/acnh.js'
 import * as indieplat from './assets/indieplat.js'
+import * as kpop from './assets/kpop.js'
+
 
 export default {
   ssbu: {
@@ -99,5 +101,9 @@ export default {
   acnh: {
     name: 'animal crossing: new horizons',
     pack: acnh
+  },
+  kpop: {
+    name: 'kpop',
+    pack: kpop
   },
 }
